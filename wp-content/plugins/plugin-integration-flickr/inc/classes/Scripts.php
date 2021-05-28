@@ -17,10 +17,9 @@ class Scripts {
 		wp_enqueue_style( 'integration-flickr-styles', FLICKR_PLUGIN_SCRIPTS_DIR_URL . 'assets/css/style.css', '', null,
 			'' );
 
-		wp_enqueue_script( 'jQuery', FLICKR_PLUGIN_SCRIPTS_DIR_URL . 'assets/js/jquery/jquery.js', '', null, true );
 		wp_enqueue_script( 'slick-slider-script', FLICKR_PLUGIN_SCRIPTS_DIR_URL . 'assets/js/slick-slider/slick.min.js',
-			[ 'jQuery' ], null, true );
+			'jquery-core-js', null, true );
 		wp_enqueue_script( 'plugin-integration-flickr-script', FLICKR_PLUGIN_SCRIPTS_DIR_URL . 'assets/js/main.js',
-			[ 'jQuery', 'slick-slider-script' ], null, true );
+			'slick-slider-script', null, true );
 	}
 }

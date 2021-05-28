@@ -1,3 +1,4 @@
-$( document ).ready(function() {
-    $('.single-slide').slick();
+jQuery( document ).ready(function() {
+    console.log('test')
+    jQuery('.single-slide').slick();
 });
