@@ -37,10 +37,12 @@ class Flickr {
 	}
 
 	private function get_result_api() {
-		if ( ! get_transient( 'flickr_api_gallery_result' ) ) {
-			$params   = $this->get_encode_params();
-			$params   = implode( '&', $params );
-			$url      = self::FLICKR_API_URL . "/?$params";
+		$params  = $this->get_encode_params();
+		$params  = implode( '&', $params );
+		$old_url = get_option( 'flickr_API_URL' );
+		$url     = $this->check_url( self::FLICKR_API_URL . "/?$params", $old_url ); // need save to data for check
+
+		if ( ! get_transient( 'flickr_api_gallery_result' ) || ( $url !== $old_url ) ) {
 			$response = file_get_contents( $url );
 			$response = json_decode( $response, 1 );
 			set_transient( 'flickr_api_gallery_result', $response, self::DAY_IN_SECONDS );
@@ -49,6 +51,22 @@ class Flickr {
 		}
 
 		return $response;
+	}
+
+	private function check_url( $url, $old_url ) {
+		if ( empty( $old_url ) ) {
+			add_option( 'flickr_API_URL', $url );
+
+			return get_option( 'flickr_API_URL' );
+		} else {
+			if ( $url === $old_url ) {
+				return $old_url;
+			} else {
+				update_option( 'flickr_API_URL', $url );
+
+				return get_option( 'flickr_API_URL' );
+			}
+		}
 	}
 
 	public function get_photos() {
