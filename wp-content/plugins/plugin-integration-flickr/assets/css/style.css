@@ -1,0 +1,47 @@
+.flickr-wrap {
+    position: relative;
+}
+
+.item > img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    background-color: #000000;
+}
+
+.item {
+    height: 100px!important;
+}
+.slick-arrow {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    font-size: 0;
+    height: 100%;
+    width: 40px!important;
+    background-color: transparent;
+    border: none;
+    background-image: url("../img/left-arrow.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    transition: all .3s ease;
+}
+
+.slick-prev.slick-arrow {
+    left: -5px;
+    transform:translateX(-100%);
+}
+
+.slick-prev.slick-arrow:hover {
+    transform:translateX(-107%);
+}
+
+.slick-next.slick-arrow {
+    right: -5px;
+    transform:translateX(100%) scaleX(-1);
+}
+
+.slick-next.slick-arrow:hover {
+    transform:translateX(107%) scaleX(-1);
+}
